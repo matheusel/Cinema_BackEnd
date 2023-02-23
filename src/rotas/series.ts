@@ -80,6 +80,38 @@ export async function transactionsRouteSeries(app : FastifyInstance){
     
         return {series};
       })
+
+      app.put('/series/atualizar/:id' , async (request ,reply) =>{
+        const criarTransacao = z.object({
+          nome: z.string(),
+          sinopse: z.string(),
+          direcao: z.string(),
+          lancamento: z.any(),
+          classificacao: z.string(),
+          temporadas: z.number(),
+          trailer: z.string(),
+          imagem: z.string(),
+        })
+
+        const getParamsScheema = z.object({
+         id : z.any(),
+      })
+        const body = criarTransacao.parse(request.body);
+        const params = getParamsScheema.parse(request.params);
+
+        const transacao =  await cone('series').where('id',params.id).update({
+          nome : body.nome,
+          sinopse: body.sinopse,
+          direcao: body.direcao,
+          lancamento: body.lancamento,
+          classificacao: body.classificacao,
+          temporadas: body.temporadas,
+          trailer: body.trailer,
+          imagem: body.imagem,
+
+        })
+            return reply.status(200).send(); 
+      })
     }
     
 
