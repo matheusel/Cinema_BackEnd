@@ -3,7 +3,7 @@ import { z } from 'zod';
 import { FastifyInstance } from "fastify";
 
 
-export async function transactionsRoute(app: FastifyInstance) {
+export async function transactionsRouteFilmes(app: FastifyInstance) {
 
   app.post('/filmes/criar', async (request, reply) => {
 

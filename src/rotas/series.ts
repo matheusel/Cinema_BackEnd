@@ -1,10 +1,10 @@
 import { cone } from "../database";
-import {z} from 'zod';
+import { z } from 'zod';
 import { FastifyInstance } from "fastify";
 
-export async function transactionsRoute(app : FastifyInstance){
+export async function transactionsRouteSeries(app : FastifyInstance){
 
-    app.post('/series/criar' , async (request ,reply) =>{
+    app.post('/series/criar', async (request ,reply) =>{
         
         const criarTransacao = z.object({
           nome: z.string(),
@@ -39,7 +39,7 @@ export async function transactionsRoute(app : FastifyInstance){
     
             const series = await cone('series').select();
     
-            return {series};
+            return { series };
         })
     
       app.get('/series/:id' , async (request ,reply) =>{
@@ -52,7 +52,7 @@ export async function transactionsRoute(app : FastifyInstance){
     
         const series = await cone('series').where('id',params.id).first();
     
-        return {series};
+        return { series };
       })
     
       app.delete('/series/deletar/:id' , async (request ,reply) =>{

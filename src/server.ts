@@ -1,9 +1,11 @@
 import fastify from "fastify";
-import { transactionsRoute } from "./rotas/series";
+import { transactionsRouteSeries } from "./rotas/series";
+import { transactionsRouteFilmes } from "./rotas/filmes";
+import { transactionsRouteAvaliacao } from "./rotas/avaliacao";
 
 const app = fastify();
 
-app.register(transactionsRoute);
+app.register(transactionsRouteSeries, transactionsRouteFilmes, transactionsRouteAvaliacao);
 
 app.listen({
     port:3333,
