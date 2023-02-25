@@ -81,4 +81,36 @@ export async function transactionsRouteFilmes(app: FastifyInstance) {
 
     return {filmes};
   })
+
+  app.put('/filmes/atualizar/:id' , async (request ,reply) =>{
+    const criarTransacao = z.object({
+      nome: z.string(),
+      sinopse: z.string(),
+      direcao: z.string(),
+      duracao: z.string(),
+      classificacao: z.string(),
+      lancamento: z.string(),
+      imagem: z.string(),
+      trailer: z.string(),
+    })
+
+    const getParamsScheema = z.object({
+     id : z.any(),
+  })
+    const body = criarTransacao.parse(request.body);
+    const params = getParamsScheema.parse(request.params);
+
+    const transacao =  await cone('filmes').where('id',params.id).update({
+      nome: body.nome,
+      sinopse: body.sinopse,
+      direcao: body.direcao,
+      duracao: body.duracao,
+      classificacao: body.classificacao,
+      lancamento: body.lancamento,
+      imagem: body.imagem,
+      trailer: body.trailer,
+
+    })
+        return reply.status(200).send(); 
+  })
 }

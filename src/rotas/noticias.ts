@@ -18,7 +18,7 @@ export async function transactionsRouteNoticias(app: FastifyInstance) {
 
         const transacao = await cone('noticias').insert({
             nome: body.nome,
-            sinopse: body.imagem,
+            imagem: body.imagem,
             data: body.data,
             autor: body.autor,
             descricao: body.descricao,
@@ -69,4 +69,30 @@ export async function transactionsRouteNoticias(app: FastifyInstance) {
 
         return { noticias }
     })
+
+    app.put('/noticias/atualizar/:id' , async (request ,reply) =>{
+        const criarTransacao = z.object({
+            nome: z.string(),
+            imagem: z.string(),
+            data: z.string(),
+            autor: z.string(),
+            descricao: z.string(),
+        })
+
+        const getParamsScheema = z.object({
+         id : z.any(),
+      })
+        const body = criarTransacao.parse(request.body);
+        const params = getParamsScheema.parse(request.params);
+
+        const transacao =  await cone('noticias').where('id',params.id).update({
+            nome: body.nome,
+            imagem: body.imagem,
+            data: body.data,
+            autor: body.autor,
+            descricao: body.descricao,
+
+        })
+            return reply.status(200).send(); 
+      })
 }

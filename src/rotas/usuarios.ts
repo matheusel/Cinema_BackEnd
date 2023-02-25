@@ -68,7 +68,31 @@ export async function transactionsRouteUsuarios(app : FastifyInstance){
         const params = getParamsScheema.parse(request.params);
     
         const usuarios = await cone('usuarios').where('id',params.id).del();
-    
+
         return reply.status(404).send();
       })
+      app.put('/usuarios/atualizar/:id' , async (request ,reply) =>{
+        const criarTransacao = z.object({
+          nome: z.string(),
+          email: z.string(),
+          senha: z.string(),
+          perfil: z.string()
+        })
+
+        const getParamsScheema = z.object({
+         id : z.any(),
+      })
+        const body = criarTransacao.parse(request.body);
+        const params = getParamsScheema.parse(request.params);
+
+        const transacao =  await cone('usuarios').where('id',params.id).update({
+          nome : body.nome,
+          email : body.email,
+          senha : body.senha,
+          perfil : body.perfil
+
+        })
+            return reply.status(200).send(); 
+      })
     }
+      
