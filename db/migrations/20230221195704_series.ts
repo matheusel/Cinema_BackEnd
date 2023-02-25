@@ -12,7 +12,9 @@ await knex.schema.createTable('series',(table) =>{
     table.text('classificacao').notNullable();
     table.integer('temporadas').notNullable();
     table.text('trailer').notNullable();
-    table.text('imagem').notNullable();   
+    table.text('imagem').notNullable();  
+    table.integer('generos_id').unsigned();
+    table.foreign('generos_id').references('generos.id'); 
   
 })
 }

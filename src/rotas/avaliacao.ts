@@ -10,6 +10,9 @@ export async function transactionsRouteAvaliacao(app : FastifyInstance){
           nome: z.string(),
           comentario: z.string(),
           nota: z.number(),
+          filmes_id :z.number(),
+          series_id :z.number(),
+          usuarios_id :z.number(),
         
         })
       
@@ -19,6 +22,9 @@ export async function transactionsRouteAvaliacao(app : FastifyInstance){
           nome : body.nome,
           comentário: body.comentario,
           nota: body.nota,
+          filmes_id:body.filmes_id,
+          series_id:body.series_id,
+          usuarios_id:body.usuarios_id,
 
 
         })
@@ -77,6 +83,9 @@ export async function transactionsRouteAvaliacao(app : FastifyInstance){
           nome: z.string(),
           comentario: z.string(),
           nota: z.number(),
+          filmes_id :z.number(),
+          series_id :z.number(),
+          usuarios_id :z.number(),
         })
 
         const getParamsScheema = z.object({
@@ -89,6 +98,9 @@ export async function transactionsRouteAvaliacao(app : FastifyInstance){
           nome : body.nome,
           comentário: body.comentario,
           nota: body.nota,
+          filmes_id:body.filmes_id,
+          series_id:body.series_id,
+          usuarios_id:body.usuarios_id,
 
         })
             return reply.status(200).send(); 
