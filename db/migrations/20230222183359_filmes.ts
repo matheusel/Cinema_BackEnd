@@ -15,6 +15,8 @@ export async function up(knex: Knex): Promise<void> {
             table.integer('lancamento').notNullable();
             table.text('imagem').notNullable();
             table.text('trailer').notNullable();
+            table.integer('generos_id').unsigned();
+            table.foreign('generos_id').references('generos.id');
         })
 }
 
