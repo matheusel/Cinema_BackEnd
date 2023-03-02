@@ -31,7 +31,7 @@ export async function transactionsRouteNoticias(app: FastifyInstance) {
 
         const noticias = await cone('noticias').select();
 
-        return { noticias };
+        return noticias;
     })
 
     app.get('/noticias/:id', async (request, reply) => {
@@ -43,7 +43,7 @@ export async function transactionsRouteNoticias(app: FastifyInstance) {
 
         const noticias = await cone('noticias').where('id', params.id).first()
 
-        return { noticias }
+        return noticias;
     })
 
     app.delete('/noticias/deletar/:id', async (request, reply) => {
@@ -67,7 +67,7 @@ export async function transactionsRouteNoticias(app: FastifyInstance) {
 
         const noticias = await cone('noticias').where('nome', params.nome).first()
 
-        return { noticias }
+        return noticias;
     })
 
     app.put('/noticias/atualizar/:id' , async (request ,reply) =>{

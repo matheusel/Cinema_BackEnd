@@ -29,7 +29,7 @@ export async function transactionsRouteUsuarios(app : FastifyInstance){
     
             const usuarios = await cone('usuarios').select();
     
-            return { usuarios };
+            return usuarios;
         })
     
       app.get('/usuarios/:id' , async (request ,reply) =>{
@@ -42,7 +42,7 @@ export async function transactionsRouteUsuarios(app : FastifyInstance){
     
         const usuarios = await cone('usuarios').where('id',params.id).first();
     
-        return { usuarios };
+        return usuarios;
       })
 
       
@@ -56,7 +56,7 @@ export async function transactionsRouteUsuarios(app : FastifyInstance){
     
         const usuarios = await cone('usuarios').where('perfil',params.perfil).first();
     
-        return { usuarios };
+        return usuarios;
       })
     
       app.delete('/usuarios/deletar/:id' , async (request ,reply) =>{

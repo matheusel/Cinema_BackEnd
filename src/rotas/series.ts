@@ -39,7 +39,7 @@ export async function transactionsRouteSeries(app : FastifyInstance){
     
             const series = await cone('series').select();
     
-            return { series };
+            return series;
         })
 
         app.get('/series/generos/:id' , async (request ,reply) =>{
@@ -52,7 +52,7 @@ export async function transactionsRouteSeries(app : FastifyInstance){
     
           const series = await cone('series').select('series.nome','series.sinopse','series.direcao','series.lancamento','series.classificacao','series.temporadas','series.trailer','series.imagem').join('generos','generos.id','=','series.generos_id').where('generos.id',params.id).distinct();
   
-          return { series };
+          return series;
       })
     
       app.get('/series/:id' , async (request ,reply) =>{
@@ -65,7 +65,7 @@ export async function transactionsRouteSeries(app : FastifyInstance){
     
         const series = await cone('series').where('id',params.id).first();
     
-        return { series };
+        return series;
       })
     
       app.delete('/series/deletar/:id' , async (request ,reply) =>{
@@ -91,7 +91,7 @@ export async function transactionsRouteSeries(app : FastifyInstance){
     
         const series = await cone('series').where('nome',params.nome).first();
     
-        return {series};
+        return series;
       })
 
       app.put('/series/atualizar/:id' , async (request ,reply) =>{
