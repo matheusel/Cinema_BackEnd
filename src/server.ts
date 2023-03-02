@@ -1,4 +1,5 @@
 import fastify from "fastify";
+import cors from "@fastify/cors";
 import { transactionsRouteAtores } from "./rotas/atores";
 import { transactionsRouteAvaliacao } from "./rotas/avaliacao";
 import { transactionsRouteFilmes } from "./rotas/filmes";
@@ -11,6 +12,9 @@ import { transactionsRouteUsuarios } from "./rotas/usuarios";
 
 
 const app = fastify();
+app.register(cors, { 
+  
+})
 app.register(transactionsRouteAtores);
 app.register(transactionsRouteAvaliacao);
 app.register(transactionsRouteFilmes);

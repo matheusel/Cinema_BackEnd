@@ -41,7 +41,7 @@ export async function transactionsRouteFilmes(app: FastifyInstance) {
 
     const filmes = await cone('filmes').select();
 
-    return { filmes };
+    return filmes;
   })
 
   app.get('/filmes/:id', async (request, reply) => {
@@ -54,7 +54,7 @@ export async function transactionsRouteFilmes(app: FastifyInstance) {
 
     const filmes = await cone('filmes').where('id', params.id).first();
 
-    return { filmes };
+    return filmes;
   })
 
   app.get('/filmes/generos/:id' , async (request ,reply) =>{
@@ -67,7 +67,7 @@ export async function transactionsRouteFilmes(app: FastifyInstance) {
 
     const filmes = await cone('filmes').select('filmes.nome','filmes.sinopse','filmes.direcao','filmes.lancamento','filmes.classificacao','filmes.trailer','filmes.imagem').join('generos','generos.id','=','filmes.generos_id').where('generos.id',params.id).distinct();
 
-    return { filmes };
+    return filmes;
 })
 
   app.delete('/filmes/deletar/:id', async (request, reply) => {
@@ -93,7 +93,7 @@ export async function transactionsRouteFilmes(app: FastifyInstance) {
 
     const filmes = await cone('filmes').where('nome',params.nome).first();
 
-    return {filmes};
+    return filmes;
   })
 
   app.put('/filmes/atualizar/:id' , async (request ,reply) =>{

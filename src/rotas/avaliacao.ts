@@ -36,7 +36,7 @@ export async function transactionsRouteAvaliacao(app : FastifyInstance){
     
             const avaliacao = await cone('avaliacao').select();
     
-            return {avaliacao};
+            return avaliacao;
         })
     
       app.get('/avaliacao/:id' , async (request ,reply) =>{
@@ -49,7 +49,7 @@ export async function transactionsRouteAvaliacao(app : FastifyInstance){
     
         const avaliacao = await cone('avaliacao').where('id',params.id).first();
     
-        return {avaliacao};
+        return avaliacao;
       })
     
       app.delete('/avaliacao/deletar/:id' , async (request ,reply) =>{
@@ -75,7 +75,7 @@ export async function transactionsRouteAvaliacao(app : FastifyInstance){
     
         const avaliacao = await cone('avaliacao').where('nome',params.nome).first();
     
-        return {avaliacao};
+        return avaliacao;
       })
 
       app.put('/avaliacao/atualizar/:id' , async (request ,reply) =>{

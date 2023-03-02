@@ -27,7 +27,7 @@ export async function transactionsRouteAtores(app : FastifyInstance){
     
             const atores = await cone('atores').select();
     
-            return {atores};
+            return atores;
         })
     
       app.get('/atores/:id' , async (request ,reply) =>{
@@ -40,7 +40,7 @@ export async function transactionsRouteAtores(app : FastifyInstance){
     
         const atores = await cone('atores').where('id',params.id).first();
     
-        return {atores};
+        return atores;
       })
     
       app.delete('/atores/deletar/:id' , async (request ,reply) =>{
@@ -66,7 +66,7 @@ export async function transactionsRouteAtores(app : FastifyInstance){
     
         const atores = await cone('atores').where('nome',params.nome).first();
     
-        return {atores};
+        return atores;
       })
 
       app.put('/atores/atualizar/:id' , async (request ,reply) =>{

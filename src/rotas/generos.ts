@@ -27,7 +27,7 @@ export async function transactionsRouteGeneros(app : FastifyInstance){
     
             const generos = await cone('generos').select();
     
-            return {generos};
+            return generos;
         })
     
       app.get('/generos/:id' , async (request ,reply) =>{
@@ -40,7 +40,7 @@ export async function transactionsRouteGeneros(app : FastifyInstance){
     
         const generos = await cone('generos').where('id',params.id).first();
     
-        return {generos};
+        return generos;
       })
     
       app.delete('/generos/deletar/:id' , async (request ,reply) =>{
@@ -66,7 +66,7 @@ export async function transactionsRouteGeneros(app : FastifyInstance){
     
         const generos = await cone('generos').where('nome',params.nome).first();
     
-        return {generos};
+        return generos;
       })
 
 
