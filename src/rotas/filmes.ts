@@ -17,7 +17,7 @@ export async function transactionsRouteFilmes(app: FastifyInstance) {
       lancamento: z.string(),
       imagem: z.string(),
       trailer: z.string(),
-      generos_id :z.number(),
+      generos_id :z.any(),
     })
 
     const body = criarTransacao.parse(request.body);

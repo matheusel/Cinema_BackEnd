@@ -12,10 +12,10 @@ export async function transactionsRouteSeries(app : FastifyInstance){
           direcao: z.string(),
           lancamento: z.any(),
           classificacao: z.string(),
-          temporadas: z.number(),
+          temporadas: z.any(),
           trailer: z.string(),
           imagem: z.string(),
-          generos_id :number(),
+          generos_id : z.any(),
         })
       
         const body = criarTransacao.parse(request.body);
